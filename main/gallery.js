@@ -22,9 +22,9 @@
 // Adjust these variables to match your sub-directories
 ///////////////////////////////////////////////////////////////
 
-// enter how many subdirectories
+// Enter how many subdirectories
 let numGalleries = 3;
-// enter how many images in each gallery
+// Enter how many images in each gallery
 let numImages = [7, 8, 11];
 
 ///////////////////////////////////////////////////////////////
@@ -44,37 +44,36 @@ let Div = function(className, innerHTML) {
 	return div;
 }
 
-///////////////////////////////////////////////////////////////
-
-let GalleryTitle = function(title) {
-	let h = document.createElement('h1');
-	h.setAttribute('class', 'gbd-title');
-	h.innerHTML = title;
-	return h;
-}
-
-let GalleryHr = function() {
-	let hr = document.createElement('hr');
-	hr.setAttribute('class', 'gbd-hr');
-	return hr;
-}
-
-///////////////////////////////////////////////////////////////
-
-let GalleryThumb = function(src, text) {
+let Img = function(className, src, text) {
 	let img = document.createElement('img');
 	img.setAttribute('src', src);
 	img.setAttribute('alt', text);
 	img.setAttribute('title', text);
-	img.setAttribute('class', 'gbd-thumb');
+	img.setAttribute('class', className);
 	return img;
 }
 
-let GalleryCaption = function(text) {
+let Para = function(className, text) {
 	let p = document.createElement('p');
 	p.setAttribute('class', 'gbd-caption');
 	p.innerHTML = text;
 	return p;
+}
+
+let Heading = function(className, text, sizeInt) {
+	if (sizeInt < 0 || sizeInt > 6) {
+		sizeInt = 1;
+	}
+	let h = document.createElement('h' + sizeInt);
+	h.setAttribute('class', className);
+	h.innerHTML = text;
+	return h;
+}
+
+let Hr = function(className) {
+	let hr = document.createElement('hr');
+	hr.setAttribute('class', className);
+	return hr;
 }
 
 ///////////////////////////////////////////////////////////////
@@ -89,6 +88,7 @@ function OpenMenu() {
 // HELPER FUNCTIONS
 ///////////////////////////////////////////////////////////////
 
+// gets text from '0.txt' if in directory
 function GetText(galleryIndex) {
 
 	let req = new XMLHttpRequest();
@@ -97,13 +97,13 @@ function GetText(galleryIndex) {
 
 	let text = req.response;
 
+	// if '0.txt not present'
 	if (req.status == 404) {
 		text = '';
 	}
 
 	return text;
 }
-
 
 ///////////////////////////////////////////////////////////////
 // CREATE GALLERIES
@@ -120,46 +120,53 @@ function CreateGalleries() {
 			gtArray = galleryText.split('\r\n');
 			// Note: \r used for Windows return carriage char
 	
-			// create gallery head
+			// CREATE GALLERY HEAD
 			let head = new Div('gbd-head');
-			let title = new GalleryTitle(gtArray[0]);
-			let icon = new Div('gbd-icon', '<span>⚙</span>');
+			let title = new Heading('gbd-title', 
+							gtArray[0], 1);
+			let iconDiv = new Div('gbd-ic');
+			let icon = new Img('gbd-icon',
+							'./gear.svg', 
+							'Settings');
 			let menu = new Div('gbd-menu');
-			let hr = new GalleryHr();
+			let hr = new Hr('gbd-hr');
 			
 			head.appendChild(title);
-			head.appendChild(icon);
+			iconDiv.appendChild(icon);
+			head.appendChild(iconDiv);
 			// head.appendChild(menu);
 
+			// head, hr, body separate for css reasons
 			gbdc.appendChild(head);
 			gbdc.appendChild(hr);
 		}
 
-
-		// create gallery body
+		// CREATE GALLERY BODY
 		let gallery = new Div('gbd');
 
 		for (let tc = 0; tc < numImages[g]; tc++) {
-			let cap = '';
+			let caption = '';
+			// if '0.txt' has more than gallery title
 			if (gtArray.length > 1) {
-			 	cap = gtArray[tc + 1];
+			 	caption = gtArray[tc + 1];
 			}
 			let gtc = new Div('gbd-tc');
-			let gt = new GalleryThumb('./g' + (g + 1) + '/' +
-				(tc + 1) + '.jpg', cap);
-			let gc = new GalleryCaption(cap);
+			let gt = new Img('gbd-thumb', 
+							'./g' + (g + 1) + '/' + (tc + 1) + '.jpg',
+							 caption);
+			let gc = new Para('gbd-caption', caption);
 
 			gtc.appendChild(gt);
 			gtc.appendChild(gc);
 			gallery.appendChild(gtc);
 		}
-
 		gbdc.appendChild(gallery);
 	}
 }
 
 ///////////////////////////////////////////////////////////////
 
+// ON SCRIPT LOAD
 CreateGalleries();
 
 ///////////////////////////////////////////////////////////////

@@ -1,0 +1,42 @@
+:: TODO ::
+
++ add large image class
+++ click to enlarge image
+- hover highlight when clicking to enlarge
+-- if last image hanging, make large
+
++ show examples of each gallery type:
+	- title, captions
+	- title only
+	- captions only
+	- no titles or captions
+
+++ menu dropdown
+- boolean menu on/off variable at top of js file
++ configurable menu options
+	- column sizes [slider]
+	- thumb padding / margins [sliders]
+	- border radius [slider]
+	- dropshadow [sliders]
+
+	- font sizes [sliders]
+	- gallery fonts [dropdown]
+		- ...
+
+	+ brick tile display
+	+ V/H slices display
+	- shuffle gallery [button]
+	-? sort gallery [dropdown]
+		- by title
+		-? by color
+	-? drag to reorder
+
+	+ RANDOM CONFIG
+	
+	-> save menu config to browser:
+		if saved css, use
+		else use default
+
++ restructure HTML js templates to master module file
+
+- darkmode / themes
