@@ -11,10 +11,9 @@
 	- captions only
 	- no titles or captions
 
-++ menu dropdown
 - boolean menu on/off variable at top of js file
 + configurable menu options
-	- column sizes [slider]
+	+++ column sizes [slider]
 	- thumb padding / margins [sliders]
 	- border radius [slider]
 	- dropshadow [sliders]
@@ -32,11 +31,9 @@
 	-? drag to reorder
 
 	+ RANDOM CONFIG
-	
+
 	-> save menu config to browser:
 		if saved css, use
 		else use default
-
-+ restructure HTML js templates to master module file
 
 - darkmode / themes
