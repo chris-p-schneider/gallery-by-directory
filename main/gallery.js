@@ -25,9 +25,9 @@
 ///////////////////////////////////////////////////////////////
 
 // Enter how many subdirectories
-let numGalleries = 3;
+let numGalleries = 4;
 // Enter how many images in each gallery
-let numImages = [7, 8, 11];
+let numImages = [7, 8, 11, 24];
 
 ///////////////////////////////////////////////////////////////
 // HTML FUNCTIONS
@@ -60,6 +60,7 @@ function GetText(galleryIndex) {
         text = '';
     }
 
+    // NOTE: had an error on g4 with title only
     return text;
 }
 
@@ -74,16 +75,16 @@ function CreateGalleries() {
     for (let g = 0; g < numGalleries; g++) {
 
         let galleryText = GetText(g);
-        let gtArray = [''];
+        let gCardImgArray = [''];
 
         if (galleryText != '') {
-            gtArray = galleryText.split('\r\n');
+            gCardImgArray = galleryText.split('\r\n');
             // Note: \r used for Windows return carriage char
     
             // CREATE GALLERY HEAD
-            let head = new Div('gbd-head');
-            let title = new Heading(1, gtArray[0], 'gbd-title');
-            let iconDiv = new Div('gbd-ic');
+            let head = new Div('gbd-head-container');
+            let title = new Heading(1, gCardImgArray[0], 'gbd-title');
+            let iconDiv = new Div('gbd-icon-container');
             let icon = new Img('./gear.svg', 
                             'Settings', 'gbd-icon');
             iconDiv.setAttribute('onclick', 'OpenMenu(this)')
@@ -94,22 +95,26 @@ function CreateGalleries() {
             head.appendChild(iconDiv);
 
             // CREATE GALLERY BODY
-            let gallery = new Div('gbd');
+            let gallery = new Div('gbd-gallery-container');
 
             for (let tc = 0; tc < numImages[g]; tc++) {
                 let caption = '';
                 // if '0.txt' has more than gallery title
-                if (gtArray.length > 1) {
-                    caption = gtArray[tc + 1];
+                if (gCardImgArray.length > 1) {
+                    caption = gCardImgArray[tc + 1];
                 }
-                let gtc = new Div('gbd-tc');
-                let gt = new Img('./g' + (g + 1) + '/' + (tc + 1) + '.jpg',
-                                 caption, 'gbd-thumb');
-                let gc = new Para(caption, 'gbd-caption');
+                let gCard = new Div('gbd-gallery-card');
+                let gCardImgContainer = new Div('gbd-gallery-card-image-container');
+                let gCardImg = new Img('./g' + (g + 1) + '/' + (tc + 1) + '.jpg',
+                                 caption, 'gbd-card-image');
+                let expandIcon = new Img('./expand.svg', false, 'gbd-card-expand-icon');
+                let gCaption = new Para(caption, 'gbd-card-caption');
 
-                gtc.appendChild(gt);
-                gtc.appendChild(gc);
-                gallery.appendChild(gtc);
+                gCardImgContainer.appendChild(gCardImg);
+                gCardImgContainer.appendChild(expandIcon);
+                gCard.appendChild(gCardImgContainer);
+                gCard.appendChild(gCaption);
+                gallery.appendChild(gCard);
             }
 
             // CREATE GALLERY MENU
@@ -125,8 +130,5 @@ function CreateGalleries() {
 }
 
 ///////////////////////////////////////////////////////////////
-
-// ON SCRIPT LOAD
-CreateGalleries();
 
 ///////////////////////////////////////////////////////////////

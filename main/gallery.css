@@ -24,7 +24,7 @@ input {
 /***************************************************************/
 
 /* Container for Title, Hr, Menu Icon */
-.gbd-head {
+.gbd-head-container {
 	max-width: 100%;
 	display: flex;
 	flex-flow: row wrap;
@@ -44,7 +44,7 @@ input {
 }
 
 /* Gallery Icon Container for Options Menu */
-.gbd-ic {
+.gbd-icon-container {
 	margin: 50px calc(10% / 4) 15px 0px;
 	flex: 1;
 
@@ -82,7 +82,6 @@ input {
 /* Menu for Modifying Gallery Display Options */
 .gbd-menu {
 	flex-basis: 100%;
-
 	width: 100%;
 	height: auto;
 
@@ -103,7 +102,7 @@ input {
 }
 
 /* Menu Column Container for Inputs */
-.gbd-mc {
+.gbd-menu-column-container {
 	padding: 10px;
 	flex-grow: 1;
 	flex-basis: calc(50% - 20px);
@@ -121,6 +120,16 @@ input {
 	align-content: space-around;
 }
 
+.gbd-menu-column-container p {
+	margin: 0 0 20px 0;
+	font-size: 1.6em;
+	font-weight: 600;
+}
+
+.gbd-menu-column-container label, output {
+	font-size: 1.3em;
+	font-weight: 400;
+}
 
 /* !!! TODO !!! */
 /* Continue here */
@@ -138,7 +147,8 @@ input {
 /***************************************************************/
 
 /* Gallery Container */
-.gbd {
+.gbd-gallery-container {
+	position: relative;
 	width: calc(100% - 40px);
 	height: auto;
 
@@ -152,8 +162,11 @@ input {
 	margin-top: 25px;
 }
 
-/* Gallery Thumbnail Container */
-.gbd-tc {
+/* Gallery Card Container (Image and Caption) */
+.gbd-gallery-card {
+	position: relative;
+	/* min-width: 20vw; */
+
 	display: inline-flex;
 	flex-flow: column nowrap;
 	justify-content: center;
@@ -172,20 +185,64 @@ input {
 /* !!! TODO !!! */
 /* Add class for large image, ~90% width */
 
-
-/* Gallery Thumbnail Image */
-.gbd-thumb {
+/* Container for Card Image and Expand Icon */
+.gbd-gallery-card-image-container {
+	position: relative;
 	width: 100%;
-	max-height: 90vh;
-	height: 400px;
-	object-fit: cover;
+	height: 100%;
 
-	filter: drop-shadow(0px 1px 2px hsla(0, 0%, 0%, .5));
-	border-radius: 20px;
+	display: inline-flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+
+	transition: opacity .34s ease-in-out;
 }
 
+.gbd-gallery-card-image-container:hover {
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+/* Gallery Card Image */
+.gbd-card-image {
+	position: relative;
+	width: 100%;
+	height: 400px;
+	/*
+	max-height: 90vh;
+	height: 100%;
+	*/
+	object-fit: cover;
+
+	border-radius: 20px;
+	filter: drop-shadow(0px 1px 2px hsla(0, 0%, 0%, .5));
+}
+
+/* 'Thumb Expand Material Icon' */
+.gbd-card-expand-icon {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	opacity: 0;
+	transition: opacity .3s ease-in;
+}
+
+/*
+animation: fade-in .3s ease-in;
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+*/
+
 /* Gallery Thumbnail Caption */
-.gbd-caption {
+.gbd-card-caption {
 	margin-top: 15px;
 	line-height: 1;
 

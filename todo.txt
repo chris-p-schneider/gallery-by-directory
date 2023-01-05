@@ -2,18 +2,17 @@
 
 + add large image class
 ++ click to enlarge image
-- hover highlight when clicking to enlarge
 -- if last image hanging, make large
 
 + show examples of each gallery type:
 	- title, captions
 	- title only
-	- captions only
-	- no titles or captions
+	- captions only (not configured)
+	- no titles or captions (not working)
 
 - boolean menu on/off variable at top of js file
 + configurable menu options
-	+++ column sizes [slider]
+	+++ column sizes [slider] (working mostly)
 	- thumb padding / margins [sliders]
 	- border radius [slider]
 	- dropshadow [sliders]
@@ -22,7 +21,7 @@
 	- gallery fonts [dropdown]
 		- ...
 
-	+ brick tile display
+	+ masonry/tile setting
 	+ V/H slices display
 	- shuffle gallery [button]
 	-? sort gallery [dropdown]

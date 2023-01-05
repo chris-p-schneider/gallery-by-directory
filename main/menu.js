@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////
 // menu.js
-// Gallery by Directory menu creation
+// Gallery by Directory menu creation and functionality
 ///////////////////////////////////////////////////////////////
 
 let Menu = function(gallery) {
@@ -9,8 +9,8 @@ let Menu = function(gallery) {
 	let menu = new Div('gbd-menu');
 	menu.setAttribute('style', 'display: flex;'); // none
 
-	let mcLeft = new Div('gbd-mc');
-	let mcRight = new Div('gbd-mc');
+	let mcLeft = new Div('gbd-menu-column-container');
+	let mcRight = new Div('gbd-menu-column-container');
 	let mcl = new Para('Left Column');
 	let mcr = new Para('Right Column');
 	mcLeft.appendChild(mcl);
@@ -29,19 +29,30 @@ let Menu = function(gallery) {
 	let outputSC = new Output('sliderColumns', 'outputSC');
 	outputSC.textContent = sliderColumns.value;
 
-	// change columns on slider input
+	// Change columns on slider input
 	sliderColumns.addEventListener('input', () => {
 		let columns = sliderColumns.value;
 		outputSC.textContent = columns;
 
 		let percent = Math.floor(100 / columns);
-		let tc = gallery.getElementsByClassName('gbd-tc');
-		let thumb = gallery.getElementsByClassName('gbd-thumb');
-		for (let t = 0; t < tc.length; t++) {
-			tc[t].setAttribute('style', 'width: calc(' + percent + 
-				'% - 20px); height: calc(' + percent + '% - 20px);');
-			let width = thumb[t].offsetWidth;
-			thumb[t].setAttribute('style', 'height: ' + width + 'px;');
+		let cards = gallery.getElementsByClassName('gbd-gallery-card');
+		let imgContainers = gallery.getElementsByClassName('gbd-gallery-card-image-container');
+		let images = gallery.getElementsByClassName('gbd-card-image');
+		let expandIcons = gallery.getElementsByClassName('gbd-card-expand-icon');
+
+		// resize cards to columns, images to image containers
+		for (let c = 0; c < cards.length; c++) {
+			cards[c].setAttribute('style', 'width: calc(' + percent + 
+				'% - 20px);'); // height: calc(' + percent + '% - 20px);
+			let width = imgContainers[c].offsetWidth;
+			images[c].setAttribute('style', 'width: ' + width + 
+				'height: ' + width + ';');
+			if (width < 200) {
+				expandIcons[c].setAttribute('style', 'width: 100px; height: 100px;');				
+			}
+			else {
+				expandIcons[c].setAttribute('style', 'width: 200px; height: 200px;');
+			}
 		}
 	});
 
