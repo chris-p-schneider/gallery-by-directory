@@ -42,6 +42,21 @@ function OpenMenu(menu) {
     }
 }
 
+function ExpandImage(imgDiv) {
+    let cardDiv = imgDiv.parentElement;
+    let cardImg = imgDiv.firstChild;
+    if (cardImg.className == 'gbd-card-image') {
+        cardDiv.setAttribute('style', 'width: auto;');
+        imgDiv.setAttribute('class', 'gbd-gallery-card-image-container gbd-card-image-large');
+        cardImg.setAttribute('class', 'gbd-card-image gbd-card-image-large');
+    }
+    else {
+        // cardDiv.setAttribute('class', 'gbd-gallery-card');
+        imgDiv.setAttribute('class', 'gbd-gallery-card-image-container');
+        cardImg.setAttribute('class', 'gbd-card-image');
+    }
+}
+
 ///////////////////////////////////////////////////////////////
 // HELPER FUNCTIONS
 ///////////////////////////////////////////////////////////////
@@ -105,6 +120,7 @@ function CreateGalleries() {
                 }
                 let gCard = new Div('gbd-gallery-card');
                 let gCardImgContainer = new Div('gbd-gallery-card-image-container');
+                gCardImgContainer.setAttribute('onclick', 'ExpandImage(this)')
                 let gCardImg = new Img('./g' + (g + 1) + '/' + (tc + 1) + '.jpg',
                                  caption, 'gbd-card-image');
                 let expandIcon = new Img('./expand.svg', false, 'gbd-card-expand-icon');

@@ -1,7 +1,8 @@
 :: TODO ::
 
-+ add large image class
-++ click to enlarge image
++++ develop js classes for images
+	+ maintain current state 
+
 -- if last image hanging, make large
 
 + show examples of each gallery type:
@@ -12,16 +13,13 @@
 
 - boolean menu on/off variable at top of js file
 + configurable menu options
-	+++ column sizes [slider] (working mostly)
 	- thumb padding / margins [sliders]
-	- border radius [slider]
 	- dropshadow [sliders]
 
 	- font sizes [sliders]
 	- gallery fonts [dropdown]
 		- ...
 
-	+ masonry/tile setting
 	+ V/H slices display
 	- shuffle gallery [button]
 	-? sort gallery [dropdown]

@@ -10,7 +10,9 @@ html, body {
 }
 
 input {
+	/*
 	width: 100%;
+	*/
 }
 
 /***************************************************************/
@@ -103,9 +105,9 @@ input {
 
 /* Menu Column Container for Inputs */
 .gbd-menu-column-container {
-	padding: 10px;
+	padding: 10px 20px;
 	flex-grow: 1;
-	flex-basis: calc(50% - 20px);
+	flex-basis: calc(50% - 40px);
 	min-width: 300px;
 	border-radius: 20px;
 
@@ -117,7 +119,7 @@ input {
 	flex-flow: column wrap;
 	justify-content: flex-start;
 	align-items: flex-start;
-	align-content: space-around;
+	align-content: flex-starts;
 }
 
 .gbd-menu-column-container p {
@@ -129,6 +131,13 @@ input {
 .gbd-menu-column-container label, output {
 	font-size: 1.3em;
 	font-weight: 400;
+}
+
+.menu-slider {
+	background-color: lavender;
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 20px;
 }
 
 /* !!! TODO !!! */
@@ -218,6 +227,8 @@ input {
 
 	border-radius: 20px;
 	filter: drop-shadow(0px 1px 2px hsla(0, 0%, 0%, .5));
+	transition: width .1s linear,
+		height .1s linear;
 }
 
 /* 'Thumb Expand Material Icon' */
@@ -227,6 +238,11 @@ input {
 	height: 200px;
 	opacity: 0;
 	transition: opacity .3s ease-in;
+}
+
+.gbd-card-image-large {
+	width: 90vw;
+	height: 90vh;
 }
 
 /*
